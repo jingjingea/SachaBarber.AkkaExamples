@@ -20,6 +20,7 @@ object TransformationFrontendApp {
 
     val system = ActorSystem("ClusterSystem", config)
     val frontend = system.actorOf(Props[TransformationFrontend], name = "frontend")
+    // ClusterClient들이 접속 할 수 있도록 Cluster 중의 하나인 ClusterClientReceptionist을 생성 해 둔다.
     ClusterClientReceptionist(system).registerService(frontend)
   }
 
